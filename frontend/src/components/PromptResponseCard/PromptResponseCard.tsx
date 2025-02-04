@@ -11,15 +11,17 @@ import { deletePromptResponse } from "@/api/promptResponses/promptResponses.api"
 
 interface Props {
   promptResponse: PromptResponse;
+  onDeleteSuccess: (id: string) => void;
 }
 export const PromptResponseCard: React.FC<Props> = (props) => {
-  const { promptResponse } = props;
+  const { promptResponse, onDeleteSuccess } = props;
   const { content, id } = promptResponse;
 
   const onDelete = useCallback(async () => {
     await deletePromptResponse(id);
     alert("Prompt response deleted");
-  }, [id]);
+    onDeleteSuccess(id);
+  }, [id, onDeleteSuccess]);
 
   return (
     <Card className={styles.card}>
