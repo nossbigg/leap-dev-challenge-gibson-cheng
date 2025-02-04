@@ -37,3 +37,9 @@ export const updatePromptResponse = async (
     .set({ content })
     .where(eq(promptResponsesTable.id, promptResponseId));
 };
+
+export const deletePromptResponsesByPromptId = async (promptId: string) => {
+  await pgDb
+    .delete(promptResponsesTable)
+    .where(eq(promptResponsesTable.promptId, promptId));
+};

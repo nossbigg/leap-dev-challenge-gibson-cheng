@@ -8,8 +8,31 @@ import {
   GPTModelMessage as GeminiMessage,
   processFormattedGeminiResponse,
 } from 'src/integrations/googleGemini';
-import { createPromptResponse } from '../promptResponses/promptResponses.service';
+import {
+  createPromptResponse,
+  deletePromptResponsesByPromptId,
+} from '../promptResponses/promptResponses.service';
 import { eq } from 'drizzle-orm';
+
+const generateResponsesFromPrompt = async (
+  promptId: string,
+  content: string,
+) => {
+  const geminiMessage: GeminiMessage = {
+    contentSource: 'user',
+    content: addFormattingPrompt(content),
+  };
+  const geminiResponse = await doGoogleGeminiPrompt([geminiMessage]);
+  const responseParts = processFormattedGeminiResponse(geminiResponse);
+
+  const promptResponses = await Promise.all(
+    responseParts.map((content, idx) => {
+      return createPromptResponse(content, idx + 1, promptId);
+    }),
+  );
+
+  return { promptResponses };
+};
 
 export const createPromptAndGenerateResponse = async (
   title: string,
@@ -17,19 +40,7 @@ export const createPromptAndGenerateResponse = async (
 ) => {
   const prompt = await createPrompt(title, content);
 
-  const geminiMessage: GeminiMessage = {
-    contentSource: 'user',
-    content: addFormattingPrompt(prompt.content),
-  };
-  const geminiResponse = await doGoogleGeminiPrompt([geminiMessage]);
-  const responseParts = processFormattedGeminiResponse(geminiResponse);
-
-  const promptResponses = await Promise.all(
-    responseParts.map((content, idx) => {
-      return createPromptResponse(content, idx + 1, prompt.id);
-    }),
-  );
-
+  const promptResponses = await generateResponsesFromPrompt(prompt.id, content);
   return { prompt, promptResponses };
 };
 
@@ -70,4 +81,14 @@ export const updatePrompt = async (promptId: string, content: string) => {
     .update(promptsTable)
     .set({ content })
     .where(eq(promptsTable.id, promptId));
+};
+
+export const updatePromptAndRegenerateResponses = async (
+  promptId: string,
+  content: string,
+) => {
+  await updatePrompt(promptId, content);
+  await deletePromptResponsesByPromptId(promptId);
+
+  await generateResponsesFromPrompt(promptId, content);
 };

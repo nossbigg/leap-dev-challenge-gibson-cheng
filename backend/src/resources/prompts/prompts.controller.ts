@@ -11,7 +11,7 @@ import {
 import {
   createPromptAndGenerateResponse,
   getPrompt,
-  updatePrompt,
+  updatePromptAndRegenerateResponses,
 } from './prompts.service';
 import { PromptEntity, PromptEntityWithResponses } from './prompts.entity';
 
@@ -49,6 +49,6 @@ export class PromptsController {
     @Param('id') promptId: string,
     @Body('content') content: string,
   ): Promise<void> {
-    await updatePrompt(promptId, content);
+    await updatePromptAndRegenerateResponses(promptId, content);
   }
 }
