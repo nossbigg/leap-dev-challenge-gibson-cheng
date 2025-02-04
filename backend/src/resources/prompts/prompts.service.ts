@@ -52,7 +52,13 @@ export const getPrompt = async (
 ): Promise<PromptEntityWithResponses | undefined> => {
   const r = await pgDb.query.promptsTable.findFirst({
     where: eq(promptsTable.id, promptId),
-    with: { promptResponses: true },
+    with: {
+      promptResponses: {
+        orderBy: (promptResponsesTable, { asc }) => [
+          asc(promptResponsesTable.displayOrder),
+        ],
+      },
+    },
   });
   return r;
 };
