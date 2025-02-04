@@ -2,6 +2,7 @@ import { getPrompt } from "@/api/prompts/prompts.api";
 import { Card, Divider, List, ListItem } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import CircleIcon from "@mui/icons-material/Circle";
+import { PromptResponseCard } from "@/components/PromptResponseCard";
 
 const PromptPage = async ({
   params,
@@ -22,11 +23,11 @@ const PromptPage = async ({
       <Typography variant="h4">Prompt Responses</Typography>
       <List>
         {promptResponses.map((promptResponse) => {
-          const { id, content } = promptResponse;
+          const { id } = promptResponse;
           return (
             <ListItem key={id}>
               <CircleIcon fontSize="small" />
-              <Card>{content}</Card>
+              <PromptResponseCard promptResponse={promptResponse} />
             </ListItem>
           );
         })}

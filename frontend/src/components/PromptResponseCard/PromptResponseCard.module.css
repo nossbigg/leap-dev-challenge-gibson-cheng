@@ -1,0 +1,15 @@
+.card {
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+
+  display: flex;
+}
+
+.cardContent {
+  flex: 1;
+}
+
+.cardControls {
+  flex: 0;
+}
