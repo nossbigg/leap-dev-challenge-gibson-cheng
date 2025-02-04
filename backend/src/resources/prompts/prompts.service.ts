@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { promptsTable } from 'src/db/schema/prompts';
-import { PromptEntity } from './prompts.entity';
+import { PromptEntity, PromptEntityWithResponses } from './prompts.entity';
 import { pgDb } from 'src/db/constants';
 import {
   addFormattingPrompt,
@@ -9,6 +9,7 @@ import {
   processFormattedGeminiResponse,
 } from 'src/integrations/googleGemini';
 import { createPromptResponse } from '../promptResponses/promptResponses.service';
+import { eq } from 'drizzle-orm';
 
 export const createPromptAndGenerateResponse = async (
   title: string,
@@ -44,4 +45,14 @@ export const createPrompt = async (
   await pgDb.insert(promptsTable).values(newItem);
 
   return newItem;
+};
+
+export const getPrompt = async (
+  promptId: string,
+): Promise<PromptEntityWithResponses | undefined> => {
+  const r = await pgDb.query.promptsTable.findFirst({
+    where: eq(promptsTable.id, promptId),
+    with: { promptResponses: true },
+  });
+  return r;
 };

@@ -1,2 +1,5 @@
-export { promptsTable } from './prompts';
-export { promptResponsesTable } from './promptResponses';
+export { promptsTable, promptsRelations } from './prompts';
+export {
+  promptResponsesTable,
+  promptResponsesRelations,
+} from './promptResponses';

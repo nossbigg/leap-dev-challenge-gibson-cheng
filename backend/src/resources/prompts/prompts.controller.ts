@@ -1,6 +1,14 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { createPromptAndGenerateResponse } from './prompts.service';
-import { PromptEntity } from './prompts.entity';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpException,
+  HttpStatus,
+  Param,
+  Post,
+} from '@nestjs/common';
+import { createPromptAndGenerateResponse, getPrompt } from './prompts.service';
+import { PromptEntity, PromptEntityWithResponses } from './prompts.entity';
 
 interface PostPromptRequestBody {
   title: string;
@@ -10,6 +18,17 @@ interface PostPromptRequestBody {
 @Controller('/prompts')
 export class PromptsController {
   constructor() {}
+
+  @Get(':id')
+  async getPrompt(
+    @Param('id') promptId: string,
+  ): Promise<PromptEntityWithResponses> {
+    const prompt = await getPrompt(promptId);
+    if (!prompt) {
+      throw new HttpException('Not found', HttpStatus.NOT_FOUND);
+    }
+    return prompt;
+  }
 
   @Post()
   async postPrompt(

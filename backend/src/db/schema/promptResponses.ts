@@ -1,5 +1,6 @@
 import { pgTable, text, integer, uuid } from 'drizzle-orm/pg-core';
 import { promptsTable } from './prompts';
+import { relations } from 'drizzle-orm';
 
 export const promptResponsesTable = pgTable('promptResponses', {
   id: uuid().primaryKey(),
@@ -9,3 +10,13 @@ export const promptResponsesTable = pgTable('promptResponses', {
     .notNull()
     .references(() => promptsTable.id),
 });
+
+export const promptResponsesRelations = relations(
+  promptResponsesTable,
+  ({ one }) => ({
+    prompt: one(promptsTable, {
+      fields: [promptResponsesTable.promptId],
+      references: [promptsTable.id],
+    }),
+  }),
+);
