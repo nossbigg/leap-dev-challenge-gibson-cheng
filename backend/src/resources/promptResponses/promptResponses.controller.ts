@@ -1,5 +1,8 @@
-import { Controller, Delete, Param } from '@nestjs/common';
-import { deletePromptResponse } from './promptResponses.service';
+import { Body, Controller, Delete, Param, Patch } from '@nestjs/common';
+import {
+  deletePromptResponse,
+  updatePromptResponse,
+} from './promptResponses.service';
 
 @Controller('/promptResponses')
 export class PromptResponsesController {
@@ -10,5 +13,13 @@ export class PromptResponsesController {
     @Param('id') promptResponseId: string,
   ): Promise<void> {
     await deletePromptResponse(promptResponseId);
+  }
+
+  @Patch(':id')
+  async patchPromptResponse(
+    @Param('id') promptResponseId: string,
+    @Body('content') content: string,
+  ): Promise<void> {
+    await updatePromptResponse(promptResponseId, content);
   }
 }

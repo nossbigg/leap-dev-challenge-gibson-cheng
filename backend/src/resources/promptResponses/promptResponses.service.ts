@@ -19,10 +19,21 @@ export const createPromptResponse = async (
 
   return newItem;
 };
+
 export const deletePromptResponse = async (
   promptResponseId: string,
 ): Promise<void> => {
   await pgDb
     .delete(promptResponsesTable)
+    .where(eq(promptResponsesTable.id, promptResponseId));
+};
+
+export const updatePromptResponse = async (
+  promptResponseId: string,
+  content: string,
+): Promise<void> => {
+  await pgDb
+    .update(promptResponsesTable)
+    .set({ content })
     .where(eq(promptResponsesTable.id, promptResponseId));
 };
