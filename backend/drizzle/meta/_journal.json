@@ -8,6 +8,13 @@
       "when": 1738661746561,
       "tag": "0000_ddl-add-prompts-table",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1738661849908,
+      "tag": "0001_ddl-add-prompt-responses-table",
+      "breakpoints": true
     }
   ]
 }
