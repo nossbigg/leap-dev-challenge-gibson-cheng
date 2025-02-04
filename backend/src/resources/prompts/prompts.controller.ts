@@ -11,6 +11,7 @@ import {
 import {
   createPromptAndGenerateResponse,
   getPrompt,
+  getAllPrompts,
   updatePromptAndRegenerateResponses,
 } from './prompts.service';
 import { PromptEntity, PromptEntityWithResponses } from './prompts.entity';
@@ -23,6 +24,12 @@ interface PostPromptRequestBody {
 @Controller('/prompts')
 export class PromptsController {
   constructor() {}
+
+  @Get()
+  async getPrompts(): Promise<PromptEntity[]> {
+    const prompts = await getAllPrompts();
+    return prompts;
+  }
 
   @Get(':id')
   async getPrompt(

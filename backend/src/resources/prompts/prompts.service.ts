@@ -76,6 +76,11 @@ export const getPrompt = async (
   return r;
 };
 
+export const getAllPrompts = async (): Promise<PromptEntity[]> => {
+  const r = await pgDb.select().from(promptsTable);
+  return r;
+};
+
 export const updatePrompt = async (promptId: string, content: string) => {
   await pgDb
     .update(promptsTable)
