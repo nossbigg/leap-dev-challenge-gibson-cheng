@@ -26,6 +26,20 @@ export const PromptResponseList: React.FC<Props> = (props) => {
     [currentPromptResponses]
   );
 
+  const onUpdateSuccess = useCallback(
+    (newPromptResponse: PromptResponse) => {
+      const newValues = currentPromptResponses.map((v) => {
+        if (v.id !== newPromptResponse.id) {
+          return v;
+        }
+
+        return newPromptResponse;
+      });
+      setCurrentPromptResponses(newValues);
+    },
+    [currentPromptResponses]
+  );
+
   return (
     <List>
       {currentPromptResponses.map((promptResponse) => {
@@ -36,6 +50,7 @@ export const PromptResponseList: React.FC<Props> = (props) => {
             <PromptResponseCard
               promptResponse={promptResponse}
               onDeleteSuccess={onDeleteSuccess}
+              onUpdateSuccess={onUpdateSuccess}
             />
           </ListItem>
         );

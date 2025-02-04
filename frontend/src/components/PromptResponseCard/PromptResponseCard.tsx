@@ -6,17 +6,22 @@ import styles from "./PromptResponseCard.module.css";
 import { IconButton, TextField } from "@mui/material";
 
 import CloseIcon from "@mui/icons-material/Close";
+import DoneIcon from "@mui/icons-material/Done";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useCallback, useState } from "react";
-import { deletePromptResponse } from "@/api/promptResponses/promptResponses.api";
+import {
+  deletePromptResponse,
+  updatePromptResponse,
+} from "@/api/promptResponses/promptResponses.api";
 
 interface Props {
   promptResponse: PromptResponse;
   onDeleteSuccess: (id: string) => void;
+  onUpdateSuccess: (v: PromptResponse) => void;
 }
 export const PromptResponseCard: React.FC<Props> = (props) => {
-  const { promptResponse, onDeleteSuccess } = props;
+  const { promptResponse, onDeleteSuccess, onUpdateSuccess } = props;
   const { content, id } = promptResponse;
 
   const [isEditMode, setEditMode] = useState(false);
@@ -34,6 +39,12 @@ export const PromptResponseCard: React.FC<Props> = (props) => {
     onDeleteSuccess(id);
   }, [id, onDeleteSuccess]);
 
+  const onSave = useCallback(async () => {
+    await updatePromptResponse(id, editedContent);
+    onUpdateSuccess({ ...promptResponse, content: editedContent });
+    setEditMode(false);
+  }, [editedContent, id, onUpdateSuccess, promptResponse]);
+
   if (isEditMode) {
     return (
       <Card className={styles.card}>
@@ -48,6 +59,9 @@ export const PromptResponseCard: React.FC<Props> = (props) => {
         <div className={styles.cardControls}>
           <IconButton onClick={onEditDisable}>
             <CloseIcon />
+          </IconButton>
+          <IconButton onClick={onSave}>
+            <DoneIcon />
           </IconButton>
         </div>
       </Card>
