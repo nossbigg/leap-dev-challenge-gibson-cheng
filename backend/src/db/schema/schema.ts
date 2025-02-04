@@ -1,0 +1,1 @@
+export { promptsTable } from './prompts';
