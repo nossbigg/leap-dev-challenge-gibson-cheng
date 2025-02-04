@@ -1,5 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { createPrompt } from './prompts.service';
+import { createPromptAndGenerateResponse } from './prompts.service';
 import { PromptEntity } from './prompts.entity';
 
 interface PostPromptRequestBody {
@@ -16,7 +16,7 @@ export class PromptsController {
     @Body() requestBody: PostPromptRequestBody,
   ): Promise<PromptEntity> {
     const { title, content } = requestBody;
-    const newPrompt = await createPrompt(title, content);
-    return newPrompt;
+    const { prompt } = await createPromptAndGenerateResponse(title, content);
+    return prompt;
   }
 }
