@@ -24,7 +24,5 @@ export const PromptCard: React.FC<Props> = (props) => {
     [id, router]
   );
 
-  return (
-    <EditableTextBox content={content} onSave={onSave} onDelete={() => {}} />
-  );
+  return <EditableTextBox content={content} onSave={onSave} />;
 };

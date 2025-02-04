@@ -13,7 +13,7 @@ import { useCallback, useState } from "react";
 interface Props {
   content: string;
   onSave: (v: string) => Promise<boolean>;
-  onDelete: () => void;
+  onDelete?: () => void;
 }
 export const EditableTextBox: React.FC<Props> = (props) => {
   const { content, onSave, onDelete } = props;
@@ -66,9 +66,11 @@ export const EditableTextBox: React.FC<Props> = (props) => {
         <IconButton onClick={onEditEnable}>
           <EditIcon />
         </IconButton>
-        <IconButton onClick={onDelete}>
-          <DeleteIcon />
-        </IconButton>
+        {!!onDelete && (
+          <IconButton onClick={onDelete}>
+            <DeleteIcon />
+          </IconButton>
+        )}
       </div>
     </Card>
   );
