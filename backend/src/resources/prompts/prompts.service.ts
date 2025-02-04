@@ -54,11 +54,20 @@ export const getPrompt = async (
     where: eq(promptsTable.id, promptId),
     with: {
       promptResponses: {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         orderBy: (promptResponsesTable, { asc }) => [
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
           asc(promptResponsesTable.displayOrder),
         ],
       },
     },
   });
   return r;
+};
+
+export const updatePrompt = async (promptId: string, content: string) => {
+  await pgDb
+    .update(promptsTable)
+    .set({ content })
+    .where(eq(promptsTable.id, promptId));
 };

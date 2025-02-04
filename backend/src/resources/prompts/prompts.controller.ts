@@ -5,9 +5,14 @@ import {
   HttpException,
   HttpStatus,
   Param,
+  Patch,
   Post,
 } from '@nestjs/common';
-import { createPromptAndGenerateResponse, getPrompt } from './prompts.service';
+import {
+  createPromptAndGenerateResponse,
+  getPrompt,
+  updatePrompt,
+} from './prompts.service';
 import { PromptEntity, PromptEntityWithResponses } from './prompts.entity';
 
 interface PostPromptRequestBody {
@@ -37,5 +42,13 @@ export class PromptsController {
     const { title, content } = requestBody;
     const { prompt } = await createPromptAndGenerateResponse(title, content);
     return prompt;
+  }
+
+  @Patch(':id')
+  async patchPrompt(
+    @Param('id') promptId: string,
+    @Body('content') content: string,
+  ): Promise<void> {
+    await updatePrompt(promptId, content);
   }
 }
