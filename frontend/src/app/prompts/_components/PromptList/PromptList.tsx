@@ -45,7 +45,8 @@ export const PromptList: React.FC<Props> = (props) => {
             <Card onClick={() => onPromptClick(id)} className={styles.card}>
               {makeTruncatedPromptContent(content)}
               <br />
-              <Button>See more</Button>
+              <br />
+              <Button variant="outlined">See more</Button>
             </Card>
           </ListItem>
         );
