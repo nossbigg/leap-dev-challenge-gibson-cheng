@@ -1,7 +1,9 @@
+import { getBackendApiUrl } from "../utils";
+
 export const deletePromptResponse = async (
   promptResponseId: string
 ): Promise<void> => {
-  await fetch(`http://localhost:3000/promptResponses/${promptResponseId}`, {
+  await fetch(`${getBackendApiUrl()}/promptResponses/${promptResponseId}`, {
     method: "DELETE",
   });
 };
@@ -12,7 +14,7 @@ export const updatePromptResponse = async (
 ): Promise<void> => {
   const payload = { content };
 
-  await fetch(`http://localhost:3000/promptResponses/${promptResponseId}`, {
+  await fetch(`${getBackendApiUrl()}/promptResponses/${promptResponseId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
