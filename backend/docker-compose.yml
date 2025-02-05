@@ -6,7 +6,7 @@ version: '3.9'
 services:
 
   db:
-    image: postgres
+    image: postgres:15
     restart: always
     ports:
       - 5432:5432
@@ -23,7 +23,7 @@ services:
       POSTGRES_USER: postgres
 
   adminer:
-    image: adminer
+    image: adminer:4.8.1
     restart: always
     ports:
       - 8080:8080
