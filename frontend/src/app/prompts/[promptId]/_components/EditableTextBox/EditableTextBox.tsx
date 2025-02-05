@@ -8,7 +8,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import DoneIcon from "@mui/icons-material/Done";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useTransition } from "react";
 
 interface Props {
   content: string;
@@ -40,13 +40,16 @@ export const EditableTextBox: React.FC<Props> = (props) => {
     setEditedContent(content);
   };
 
-  const onSaveHandler = useCallback(async () => {
-    const r = await onSave(editedContent);
-    if (!r) {
-      return;
-    }
+  const [isSaving, startTransition] = useTransition();
+  const onSaveHandler = useCallback(() => {
+    startTransition(async () => {
+      const r = await onSave(editedContent);
+      if (!r) {
+        return;
+      }
 
-    setEditMode(false);
+      setEditMode(false);
+    });
   }, [editedContent, onSave]);
 
   if (isEditMode) {
@@ -63,11 +66,15 @@ export const EditableTextBox: React.FC<Props> = (props) => {
         </div>
         <div className={styles.cardControls}>
           {showCancelButton && (
-            <IconButton onClick={onEditDisable}>
+            <IconButton onClick={onEditDisable} disabled={isSaving}>
               <CloseIcon />
             </IconButton>
           )}
-          <IconButton onClick={onSaveHandler}>
+          <IconButton
+            onClick={onSaveHandler}
+            loading={isSaving}
+            disabled={isSaving}
+          >
             <DoneIcon />
           </IconButton>
         </div>
