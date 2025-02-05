@@ -30,3 +30,18 @@ export const updatePrompt = async (
     body: JSON.stringify(payload),
   });
 };
+
+export const createPrompt = async (content: string): Promise<string> => {
+  const payload = { title: "My New Prompt", content };
+
+  const response = await fetch(`http://localhost:3000/prompts`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+  const result = await response.json();
+  const { id } = result;
+  return id;
+};

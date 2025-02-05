@@ -14,11 +14,23 @@ interface Props {
   content: string;
   onSave: (v: string) => Promise<boolean>;
   onDelete?: () => void;
+  customEditMode?: {
+    initialEditMode: boolean;
+    showCancelButton: boolean;
+  };
 }
 export const EditableTextBox: React.FC<Props> = (props) => {
-  const { content, onSave, onDelete } = props;
+  const { content, onSave, onDelete, customEditMode } = props;
 
-  const [isEditMode, setEditMode] = useState(false);
+  // for customEditMode
+  const initialEditMode = customEditMode
+    ? customEditMode.initialEditMode
+    : false;
+  const showCancelButton = customEditMode
+    ? customEditMode.showCancelButton
+    : true;
+
+  const [isEditMode, setEditMode] = useState(initialEditMode);
   const [editedContent, setEditedContent] = useState(content);
 
   const onEditEnable = () => setEditMode(true);
@@ -48,9 +60,11 @@ export const EditableTextBox: React.FC<Props> = (props) => {
           />
         </div>
         <div className={styles.cardControls}>
-          <IconButton onClick={onEditDisable}>
-            <CloseIcon />
-          </IconButton>
+          {showCancelButton && (
+            <IconButton onClick={onEditDisable}>
+              <CloseIcon />
+            </IconButton>
+          )}
           <IconButton onClick={onSaveHandler}>
             <DoneIcon />
           </IconButton>
