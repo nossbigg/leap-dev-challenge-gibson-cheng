@@ -1,6 +1,6 @@
 import { getPrompts } from "@/api/prompts/prompts.api";
-import { List, ListItem } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import { PromptList } from "./_components/PromptList";
 
 const PromptsPage = async () => {
   const prompts = await getPrompts();
@@ -9,12 +9,7 @@ const PromptsPage = async () => {
     <>
       <Typography variant="h4">My Prompts</Typography>
 
-      <List>
-        {prompts.map((prompt) => {
-          const { id, content } = prompt;
-          return <ListItem key={id}>{content}</ListItem>;
-        })}
-      </List>
+      <PromptList prompts={prompts} />
     </>
   );
 };
