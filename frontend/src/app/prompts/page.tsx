@@ -3,6 +3,12 @@ import Typography from "@mui/material/Typography";
 import { PromptList } from "./_components/PromptList";
 import { CommonLayout } from "@/components/CommonLayout";
 import { PromptsTitle } from "./_components/PromptsTitle";
+import { Metadata } from "next/types";
+import { makePageTitle } from "@/components/utils/pageCommonUtils";
+
+export const metadata: Metadata = {
+  title: makePageTitle('Prompts'),
+};
 
 const PromptsPage = async () => {
   const prompts = await getPrompts();

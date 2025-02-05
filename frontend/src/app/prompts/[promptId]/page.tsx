@@ -6,6 +6,12 @@ import Typography from "@mui/material/Typography";
 import { CommonLayout } from "@/components/CommonLayout";
 import { makeTruncatedPromptContent } from "@/components/utils/promptsUtils";
 import { Redirect } from "@/components/Redirect";
+import { Metadata } from "next/types";
+import { makePageTitle } from "@/components/utils/pageCommonUtils";
+
+export const metadata: Metadata = {
+  title: makePageTitle('Prompt'),
+};
 
 const PromptPage = async ({
   params,
