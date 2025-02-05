@@ -1,3 +1,5 @@
+'use server'
+
 import { getBackendApiUrl } from "../utils";
 
 export const deletePromptResponse = async (
