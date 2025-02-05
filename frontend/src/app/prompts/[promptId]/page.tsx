@@ -10,7 +10,7 @@ import { Metadata } from "next/types";
 import { makePageTitle } from "@/components/utils/pageCommonUtils";
 
 export const metadata: Metadata = {
-  title: makePageTitle('Prompt'),
+  title: makePageTitle("Prompt"),
 };
 
 const PromptPage = async ({
@@ -23,7 +23,7 @@ const PromptPage = async ({
 
   if (!prompt) {
     return (
-      <CommonLayout title={`Prompt:`} showBackIcon>
+      <CommonLayout title={`Prompt:`} backButtonUrl="/prompts">
         Prompt: {promptId} not found. Redirecting...
         <Redirect path="/prompts" wait={2000} />
       </CommonLayout>
@@ -34,7 +34,7 @@ const PromptPage = async ({
   return (
     <CommonLayout
       title={`Prompt: ${makeTruncatedPromptContent(prompt.content)}`}
-      showBackIcon
+      backButtonUrl="/prompts"
     >
       <br />
       <Typography variant="h4">Prompt:</Typography>

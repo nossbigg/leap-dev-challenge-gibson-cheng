@@ -7,7 +7,7 @@ import { Metadata } from "next/types";
 import { makePageTitle } from "@/components/utils/pageCommonUtils";
 
 export const metadata: Metadata = {
-  title: makePageTitle('Prompts'),
+  title: makePageTitle("Prompts"),
 };
 
 const PromptsPage = async () => {
@@ -27,4 +27,4 @@ const PromptsPage = async () => {
 export default PromptsPage;
 
 // to force refetch on every load
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";

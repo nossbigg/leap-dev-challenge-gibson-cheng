@@ -8,12 +8,12 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 interface Props {
   title: string;
   children: React.ReactNode;
-  showBackIcon?: boolean;
+  backButtonUrl?: string;
 }
 
 // ref: https://v3.mui.com/getting-started/page-layout-examples/
 export const CommonLayout: React.FC<Props> = (props) => {
-  const { title, children, showBackIcon } = props;
+  const { title, children, backButtonUrl } = props;
 
   const router = useRouter();
   const onLinkClick = useCallback(
@@ -24,19 +24,19 @@ export const CommonLayout: React.FC<Props> = (props) => {
   );
 
   const onBackClick = useCallback(() => {
-    router.back();
-  }, [router]);
+    if (!backButtonUrl) {
+      return;
+    }
+    router.push(backButtonUrl);
+  }, [backButtonUrl, router]);
 
   return (
     <div>
       <AppBar position="static">
         <Toolbar>
-          <div className='flex flex-1 items-center'>
-            {showBackIcon && (
-              <Button
-                onClick={onBackClick}
-                sx={{ color: "#fff" }}
-              >
+          <div className="flex flex-1 items-center">
+            {backButtonUrl && (
+              <Button onClick={onBackClick} sx={{ color: "#fff" }}>
                 <ArrowBackIcon></ArrowBackIcon>
               </Button>
             )}
@@ -55,7 +55,7 @@ export const CommonLayout: React.FC<Props> = (props) => {
         </Toolbar>
       </AppBar>
 
-      <div className='py-5 px-10'>{children}</div>
+      <div className="py-5 px-10">{children}</div>
     </div>
   );
 };
