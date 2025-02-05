@@ -3,6 +3,14 @@
 LLM App challenge for LEAP Dev
 by Gibson Cheng
 
+**Prompts Page**
+
+<img src='./screenshots/prompts-page.png' height=400/>
+
+**Prompt Page**
+
+<img src='./screenshots/prompt-page.png' height=400/>
+
 ## Prerequistes
 
 - `node`
