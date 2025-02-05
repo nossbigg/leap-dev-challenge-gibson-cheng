@@ -22,5 +22,5 @@ export const PromptCard: React.FC<Props> = (props) => {
     [id]
   );
 
-  return <EditableTextBox content={content} onSave={onSave} />;
+  return <EditableTextBox content={content} onSave={onSave} label="Prompt" />;
 };

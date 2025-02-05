@@ -13,6 +13,7 @@ import styles from "./PromptsTitle.module.css";
 import { EditableTextBox } from "../../[promptId]/_components/EditableTextBox";
 import { createPrompt } from "@/api/prompts/prompts.api";
 import { useRouter } from "next/navigation";
+import AddBoxIcon from "@mui/icons-material/AddBox";
 
 interface Props {
   hasExistingPrompts: boolean;
@@ -48,7 +49,8 @@ export const PromptsTitle: React.FC<Props> = (props) => {
               setShowNewPromptAccordion(true);
             }}
           >
-            New Prompt
+            <AddBoxIcon></AddBoxIcon>
+            &nbsp;Add Prompt
           </Button>
         </div>
       </div>
@@ -63,11 +65,14 @@ export const PromptsTitle: React.FC<Props> = (props) => {
           aria-controls="panel1-content"
           id="panel1-header"
         >
-          <Typography component="span">New Prompt</Typography>
+          <AddBoxIcon></AddBoxIcon>
+          &nbsp;
+          <Typography component="span">Add Prompt</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <EditableTextBox
             content=""
+            label="Prompt"
             onSave={onCreateNewPrompt}
             customEditMode={{ initialEditMode: true, showCancelButton: false }}
           />

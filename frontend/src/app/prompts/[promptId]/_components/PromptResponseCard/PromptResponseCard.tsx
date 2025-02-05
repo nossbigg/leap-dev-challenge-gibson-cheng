@@ -33,6 +33,11 @@ export const PromptResponseCard: React.FC<Props> = (props) => {
   );
 
   return (
-    <EditableTextBox content={content} onDelete={onDelete} onSave={onSave} />
+    <EditableTextBox
+      content={content}
+      onDelete={onDelete}
+      onSave={onSave}
+      label="Prompt Response"
+    />
   );
 };

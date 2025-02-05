@@ -12,6 +12,7 @@ import { useCallback, useState } from "react";
 
 interface Props {
   content: string;
+  label: string;
   onSave: (v: string) => Promise<boolean>;
   onDelete?: () => void;
   customEditMode?: {
@@ -20,7 +21,7 @@ interface Props {
   };
 }
 export const EditableTextBox: React.FC<Props> = (props) => {
-  const { content, onSave, onDelete, customEditMode } = props;
+  const { content, label, onSave, onDelete, customEditMode } = props;
 
   // for customEditMode
   const initialEditMode = customEditMode
@@ -54,6 +55,7 @@ export const EditableTextBox: React.FC<Props> = (props) => {
         <div className={styles.cardContents}>
           <TextField
             value={editedContent}
+            label={label}
             onChange={(e) => setEditedContent(e.target.value)}
             fullWidth
             multiline
