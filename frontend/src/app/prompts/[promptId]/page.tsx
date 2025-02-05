@@ -1,6 +1,6 @@
 import { getPrompt } from "@/api/prompts/prompts.api";
-import { PromptCard } from "@/components/PromptCard";
-import { PromptResponseList } from "@/components/PromptResponseList";
+import { PromptCard } from "./_components/PromptCard";
+import { PromptResponseList } from "./_components/PromptResponseList";
 import { Card, Divider } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
