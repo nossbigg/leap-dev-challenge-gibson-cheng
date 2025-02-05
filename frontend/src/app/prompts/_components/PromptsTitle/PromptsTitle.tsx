@@ -50,7 +50,7 @@ export const PromptsTitle: React.FC<Props> = (props) => {
             }}
           >
             <AddBoxIcon></AddBoxIcon>
-            &nbsp;Add Prompt
+            &nbsp;Prompt
           </Button>
         </div>
       </div>
@@ -67,7 +67,7 @@ export const PromptsTitle: React.FC<Props> = (props) => {
         >
           <AddBoxIcon></AddBoxIcon>
           &nbsp;
-          <Typography component="span">Add Prompt</Typography>
+          <Typography component="span">Add New Prompt</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <EditableTextBox
