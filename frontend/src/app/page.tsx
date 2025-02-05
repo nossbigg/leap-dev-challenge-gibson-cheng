@@ -1,14 +1,10 @@
-"use client";
-
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { Redirect } from "@/components/Redirect";
 
 export default function Home() {
-  const router = useRouter();
-
-  useEffect(() => {
-    router.replace("/prompts");
-  });
-
-  return <>Redirecting...</>;
+  return (
+    <>
+      Redirecting...
+      <Redirect path="/prompts" />
+    </>
+  );
 }
