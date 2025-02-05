@@ -5,6 +5,7 @@ import { Button, Card, List, ListItem } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import styles from "./PromptList.module.css";
+import { makeTruncatedPromptContent } from "@/components/utils/promptsUtils";
 
 interface Props {
   prompts: Prompt[];
@@ -28,7 +29,7 @@ export const PromptList: React.FC<Props> = (props) => {
         return (
           <ListItem key={id}>
             <Card onClick={() => onPromptClick(id)} className={styles.card}>
-              {content}
+              {makeTruncatedPromptContent(content)}
               <br />
               <Button>See more</Button>
             </Card>

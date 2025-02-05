@@ -4,6 +4,7 @@ import { PromptResponseList } from "./_components/PromptResponseList";
 import { Divider } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { CommonLayout } from "@/components/CommonLayout";
+import { makeTruncatedPromptContent } from "@/components/utils/promptsUtils";
 
 const PromptPage = async ({
   params,
@@ -13,10 +14,12 @@ const PromptPage = async ({
   const { promptId } = await params;
   const prompt = await getPrompt(promptId);
 
-  const { promptResponses, title } = prompt;
+  const { promptResponses } = prompt;
 
   return (
-    <CommonLayout title={`Prompt: ${title}`}>
+    <CommonLayout
+      title={`Prompt: ${makeTruncatedPromptContent(prompt.content)}`}
+    >
       <br />
       <Typography variant="h4">Prompt:</Typography>
       <br />
