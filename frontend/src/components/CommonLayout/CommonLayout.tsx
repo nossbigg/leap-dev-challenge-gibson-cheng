@@ -11,6 +11,7 @@ interface Props {
   showBackIcon?: boolean;
 }
 
+// ref: https://v3.mui.com/getting-started/page-layout-examples/
 export const CommonLayout: React.FC<Props> = (props) => {
   const { title, children, showBackIcon } = props;
 
