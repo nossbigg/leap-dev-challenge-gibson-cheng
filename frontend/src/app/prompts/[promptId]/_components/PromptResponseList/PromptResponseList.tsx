@@ -7,6 +7,7 @@ import CircleIcon from "@mui/icons-material/Circle";
 
 import { useCallback, useState } from "react";
 import { PromptResponseCard } from "../PromptResponseCard";
+import styles from "./PromptResponseList.module.css";
 
 interface Props {
   promptResponses: PromptResponse[];
@@ -46,7 +47,7 @@ export const PromptResponseList: React.FC<Props> = (props) => {
         const { id } = promptResponse;
         return (
           <ListItem key={id}>
-            <CircleIcon fontSize="small" />
+            <CircleIcon fontSize="small" className={styles.bulletIcon} />
             <PromptResponseCard
               promptResponse={promptResponse}
               onDeleteSuccess={onDeleteSuccess}

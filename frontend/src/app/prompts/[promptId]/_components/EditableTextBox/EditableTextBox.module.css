@@ -1,13 +1,17 @@
 .card {
-  padding: 5px;
+  padding: 10px 20px;
   margin: 5px;
   border-radius: 5px;
 
   display: flex;
+  flex: 1;
 }
 
-.cardContent {
+.cardContents {
   flex: 1;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
 }
 
 .cardControls {
