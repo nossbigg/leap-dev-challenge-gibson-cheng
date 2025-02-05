@@ -8,10 +8,16 @@ export const getPrompts = async (): Promise<Prompt[]> => {
   return result;
 };
 
-export const getPrompt = async (promptId: string): Promise<Prompt> => {
+export const getPrompt = async (
+  promptId: string
+): Promise<Prompt | undefined> => {
   const response = await fetch(`http://localhost:3000/prompts/${promptId}`, {
     method: "GET",
   });
+  if (response.status !== 200) {
+    return undefined;
+  }
+
   const result = await response.json();
   return result;
 };

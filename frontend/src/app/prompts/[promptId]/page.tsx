@@ -5,6 +5,7 @@ import { Divider } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { CommonLayout } from "@/components/CommonLayout";
 import { makeTruncatedPromptContent } from "@/components/utils/promptsUtils";
+import { Redirect } from "@/components/Redirect";
 
 const PromptPage = async ({
   params,
@@ -14,8 +15,16 @@ const PromptPage = async ({
   const { promptId } = await params;
   const prompt = await getPrompt(promptId);
 
-  const { promptResponses } = prompt;
+  if (!prompt) {
+    return (
+      <CommonLayout title={`Prompt:`} showBackIcon>
+        Prompt: {promptId} not found. Redirecting...
+        <Redirect path="/prompts" wait={2000} />
+      </CommonLayout>
+    );
+  }
 
+  const { promptResponses } = prompt;
   return (
     <CommonLayout
       title={`Prompt: ${makeTruncatedPromptContent(prompt.content)}`}
