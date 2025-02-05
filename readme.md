@@ -79,7 +79,7 @@ npm run start
 
 - [http://localhost:3001](http://localhost:3001): Landing page for frontend
 - [http://localhost:3000](http://localhost:3000): Backend API endpoint
-- [Adminer](http://localhost:8080/?pgsql=db&username=postgres&db=postgres&ns=): UI for Postgres DB
+- [Adminer](http://localhost:8080/?pgsql=db&username=postgres&db=postgres&ns=public): UI for Postgres DB
 
   - Credentials
 
