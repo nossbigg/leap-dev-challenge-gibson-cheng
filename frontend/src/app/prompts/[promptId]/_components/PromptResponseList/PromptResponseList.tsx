@@ -1,7 +1,7 @@
 "use client";
 
 import { PromptResponse } from "@/api/promptResponses/promptResponses.types";
-import { List, ListItem } from "@mui/material";
+import { Alert, List, ListItem } from "@mui/material";
 
 import CircleIcon from "@mui/icons-material/Circle";
 
@@ -40,6 +40,20 @@ export const PromptResponseList: React.FC<Props> = (props) => {
     },
     [currentPromptResponses]
   );
+
+  if (currentPromptResponses.length === 0) {
+    return (
+      <>
+        <br />
+        <Alert severity="info">
+          <i>No existing prompt responses.</i>
+          <br />
+          <br />
+          Tip: Try updating the prompt above to generate new prompt responses.
+        </Alert>
+      </>
+    );
+  }
 
   return (
     <List>
