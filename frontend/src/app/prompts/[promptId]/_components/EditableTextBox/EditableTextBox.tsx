@@ -1,7 +1,6 @@
 "use client";
 
 import Card from "@mui/material/Card";
-import styles from "./EditableTextBox.module.css";
 import { IconButton, TextField } from "@mui/material";
 
 import CloseIcon from "@mui/icons-material/Close";
@@ -9,6 +8,12 @@ import DoneIcon from "@mui/icons-material/Done";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useCallback, useState, useTransition } from "react";
+
+const styles = {
+  card: 'p-5 m-1 flex flex-1',
+  cardContents: 'flex-1 flex items-center mr-2 p5',
+  cardControls: 'flex-0'
+}
 
 interface Props {
   content: string;
