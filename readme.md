@@ -90,3 +90,18 @@ npm run start
     Password: example
     database: postgres
   ```
+
+## What's included
+
+- Prompts page
+  - List all prompts
+  - Create new prompt
+- Prompt page
+  - Edit prompt
+  - List prompt responses
+  - Edit prompt repsonse
+  - Delete prompt response
+- Other extras
+  - Drizzle DB migrations
+  - Backend test suite
+  - Frontend test suite
