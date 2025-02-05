@@ -19,6 +19,7 @@ const PromptPage = async ({
   return (
     <CommonLayout
       title={`Prompt: ${makeTruncatedPromptContent(prompt.content)}`}
+      showBackIcon
     >
       <br />
       <Typography variant="h4">Prompt:</Typography>

@@ -1,3 +1,14 @@
+.titleContainer {
+  flex: 1;
+  height: 36px;
+  display: flex;
+  align-items: center;
+}
+
+.whiteButton {
+  color: #fff;
+}
+
 .childrenContainer {
   padding: 10px;
 }
