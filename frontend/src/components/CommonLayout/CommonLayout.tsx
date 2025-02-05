@@ -45,9 +45,6 @@ export const CommonLayout: React.FC<Props> = (props) => {
           </div>
           <div>
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
-              <Button sx={{ color: "#fff" }} onClick={() => onLinkClick("/")}>
-                Home
-              </Button>
               <Button
                 sx={{ color: "#fff" }}
                 onClick={() => onLinkClick("/prompts")}
