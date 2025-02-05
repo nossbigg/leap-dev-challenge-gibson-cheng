@@ -3,7 +3,6 @@
 import { AppBar, Toolbar, Button, Box } from "@mui/material";
 import React, { useCallback } from "react";
 import { useRouter } from "next/navigation";
-import styles from "./CommonLayout.module.css";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 interface Props {
@@ -31,17 +30,16 @@ export const CommonLayout: React.FC<Props> = (props) => {
     <div>
       <AppBar position="static">
         <Toolbar>
-          <div className={styles.titleContainer}>
+          <div className='flex flex-1 items-center'>
             {showBackIcon && (
               <Button
                 onClick={onBackClick}
-                className={styles.backButton}
                 sx={{ color: "#fff" }}
               >
                 <ArrowBackIcon></ArrowBackIcon>
               </Button>
             )}
-            <b>{title}</b>
+            <span className="font-bold">{title}</span>
           </div>
           <div>
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
@@ -56,7 +54,7 @@ export const CommonLayout: React.FC<Props> = (props) => {
         </Toolbar>
       </AppBar>
 
-      <div className={styles.childrenContainer}>{children}</div>
+      <div className='py-5 px-10'>{children}</div>
     </div>
   );
 };

@@ -4,7 +4,6 @@ import { Prompt } from "@/api/prompts/prompts.types";
 import { Alert, Button, Card, List, ListItem } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
-import styles from "./PromptList.module.css";
 import { makeTruncatedPromptContent } from "@/components/utils/promptsUtils";
 
 interface Props {
@@ -42,7 +41,7 @@ export const PromptList: React.FC<Props> = (props) => {
         const { id, content } = prompt;
         return (
           <ListItem key={id}>
-            <Card onClick={() => onPromptClick(id)} className={styles.card}>
+            <Card onClick={() => onPromptClick(id)} className='p-5 mb-1 w-full cursor-pointer'>
               {makeTruncatedPromptContent(content)}
               <br />
               <br />

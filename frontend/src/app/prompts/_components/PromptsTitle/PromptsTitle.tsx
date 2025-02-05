@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import React, { useCallback, useState } from "react";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import styles from "./PromptsTitle.module.css";
 import { EditableTextBox } from "../../[promptId]/_components/EditableTextBox";
 import { createPrompt } from "@/api/prompts/prompts.api";
 import { useRouter } from "next/navigation";
@@ -38,8 +37,8 @@ export const PromptsTitle: React.FC<Props> = (props) => {
   return (
     <>
       <br />
-      <div className={styles.titleContainer}>
-        <div className={styles.titleTextContainer}>
+      <div className='flex'>
+        <div className='flex-1'>
           <Typography variant="h4">My Prompts</Typography>
         </div>
         <div>
