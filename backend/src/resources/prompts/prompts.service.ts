@@ -1,13 +1,13 @@
 import { v4 as uuidv4 } from 'uuid';
-import { promptsTable } from 'src/db/schema/prompts';
+import { promptsTable } from '../../db/schema/prompts';
 import { PromptEntity, PromptEntityWithResponses } from './prompts.entity';
-import { pgDb } from 'src/db/constants';
+import { pgDb } from '../../db/constants';
 import {
   addFormattingPrompt,
   doGoogleGeminiPrompt,
   GPTModelMessage as GeminiMessage,
   processFormattedGeminiResponse,
-} from 'src/integrations/googleGemini';
+} from '../../integrations/googleGemini';
 import {
   createPromptResponse,
   deletePromptResponsesByPromptId,

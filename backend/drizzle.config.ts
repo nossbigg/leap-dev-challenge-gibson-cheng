@@ -1,5 +1,5 @@
 import { defineConfig } from 'drizzle-kit';
-import { getDbUrl } from 'src/db/constants';
+import { getDbUrl } from './src/db/constants';
 
 export default defineConfig({
   dialect: 'postgresql',

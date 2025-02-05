@@ -1,5 +1,5 @@
 import { Content, GoogleGenerativeAI } from '@google/generative-ai';
-import { PROMPT_3_POINT_AND_SPACER_FORMATTER } from 'src/integrations/googleGemini/constants';
+import { PROMPT_3_POINT_AND_SPACER_FORMATTER } from './constants';
 
 export interface GPTModelMessage {
   content: string;

@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
-import { promptResponsesTable } from 'src/db/schema/promptResponses';
+import { promptResponsesTable } from '../../db/schema/promptResponses';
 import { PromptResponseEntity } from './promptResponses.entity';
-import { pgDb } from 'src/db/constants';
+import { pgDb } from '../../db/constants';
 import { eq } from 'drizzle-orm';
 
 export const createPromptResponse = async (
