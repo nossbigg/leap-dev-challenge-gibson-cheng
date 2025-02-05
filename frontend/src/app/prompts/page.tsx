@@ -19,3 +19,6 @@ const PromptsPage = async () => {
 };
 
 export default PromptsPage;
+
+// to force refetch on every load
+export const dynamic = 'force-dynamic'
